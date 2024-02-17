@@ -1,0 +1,109 @@
+{
+  "build": {
+    "beforeDevCommand": "npm run dev",
+    "beforeBuildCommand": "npm run build",
+    "devPath": "http://localhost:1420",
+    "distDir": "../dist",
+    "withGlobalTauri": false
+  },
+  "package": {
+    "productName": "Tmuxer",
+    "version": "1.0.0"
+  },
+  "tauri": {
+    "systemTray": {
+      "iconPath": "icons/32x32.png",
+      "iconAsTemplate": true
+    },
+    "allowlist": {
+      "fs": {
+        "readDir": true,
+        "readFile": true,
+        "writeFile": true,
+        "scope": [
+          "$APPDATA/*"
+        ]
+      },
+      "globalShortcut": {
+        "all": true
+      },
+      "path": {
+        "all": true
+      },
+      "window": {
+        "show": true,
+        "hide": true,
+        "setFocus": true,
+        "setSize": true,
+        "center": true,
+        "setSkipTaskbar": true,
+        "create": true,
+        "all": false,
+        "close": true,
+        "maximize": true,
+        "minimize": true,
+        "unmaximize": true,
+        "unminimize": true,
+        "startDragging": true
+      },
+      "protocol": {}
+    },
+    "bundle": {
+      "active": true,
+      "category": "Productivity",
+      "copyright": "com.parthjadhav.tmuxer",
+      "deb": {
+        "depends": []
+      },
+      "externalBin": [],
+      "icon": [
+        "icons/32x32.png",
+        "icons/128x128.png",
+        "icons/128x128@2x.png",
+        "icons/icon.icns",
+        "icons/icon.ico"
+      ],
+      "identifier": "com.parthjadhav.tmuxer",
+      "longDescription": "",
+      "macOS": {
+        "entitlements": null,
+        "exceptionDomain": "",
+        "frameworks": [],
+        "providerShortName": null,
+        "signingIdentity": null
+      },
+      "resources": [],
+      "shortDescription": "",
+      "targets": [
+        "app"
+      ],
+      "windows": {
+        "certificateThumbprint": null,
+        "digestAlgorithm": "sha256",
+        "timestampUrl": ""
+      }
+    },
+    "security": {
+      "csp": "default-src tmuxer: asset: https://asset.localhost img-src: 'self' data:; style-src 'self' 'unsafe-inline'"
+    },
+    "updater": {
+      "active": false
+    },
+    "windows": [
+      {
+        "label": "search",
+        "fullscreen": false,
+        "resizable": false,
+        "title": "",
+        "width": 728,
+        "height": 646,
+        "alwaysOnTop": true,
+        "decorations": false,
+        "transparent": true,
+        "center": true,
+        "skipTaskbar": true
+      }
+    ],
+    "macOSPrivateApi": true
+  }
+}

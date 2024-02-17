@@ -1,0 +1,196 @@
+:root {
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  --app-bg-color: rgba(0, 0, 0, 0.50);
+  --search-bg-color: rgba(15, 15, 15, 0.85);
+  --light-overlay-color: rgba(255, 255, 255, 0.1);
+  --lighter-overlay-color: rgba(200, 200, 200, 0.04);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'ClashDisplay-Light';
+  font-weight: 300;
+  font-style: normal;
+  src: url("./assets/fonts/ClashDisplay-Light.woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'ClashDisplay-Regular';
+  font-weight: 400;
+  font-style: normal;
+  src: url("./assets/fonts/ClashDisplay-Regular.woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'ClashDisplay-Medium';
+  font-weight: 500;
+  font-style: normal;
+  src: url("./assets/fonts/ClashDisplay-Medium.woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'ClashDisplay-SemiBold';
+  font-weight: 600;
+  font-style: normal;
+  src: url("./assets/fonts/ClashDisplay-Semibold.woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'ClashDisplay-Bold';
+  font-weight: 700;
+  font-style: normal;
+  src: url("./assets/fonts/ClashDisplay-Bold.woff2");
+}
+
+@font-face {
+  font-display: swap;
+  font-family: 'ClashDisplay-Bold';
+  font-weight: 700;
+  font-style: normal;
+  src: url("./assets/fonts/ClashDisplay-Bold.woff2");
+}
+
+body {
+  padding: 0;
+  -webkit-user-select: none;
+  user-select: none !important;
+  margin: 0;
+  overflow: hidden;
+  cursor: default;
+}
+
+.seperator {
+  position: relative;
+  width: 750px;
+  border: 1px solid var(--highlight-overlay);
+  margin-bottom: 40px;
+}
+
+.container {
+  padding: 10px 0px 10px 0px;
+  background-color: var(--app-bg-color);
+  border-radius: 10px;
+  color: white;
+}
+
+.logo {
+  width: 154px !important;
+  height: auto !important;
+  margin-left: 24px;
+  margin-top: 16px;
+}
+
+.searchWindow {
+  padding: 10px 0px 10px 0px;
+  background-color: var(--search-bg-color);
+  border-radius: 10px;
+  color: white;
+}
+
+.dashboardWindow {
+  color: white;
+  background-color: var(--app-bg-color);
+  min-height: 280px;
+  height: 100vh;
+  width: 427px;
+  border-radius: 10px;
+  display: flex;
+}
+
+.leftSideBar {
+  width: 250px;
+}
+
+.sidebarOptionsHeader {
+  margin-top: 24px;
+  margin-left: 24px;
+  padding-right: 23px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sidebarOptions {
+  margin-top: 12px;
+  margin-left: 12px;
+  padding-right: 12px;
+}
+
+.categoriesOptions {
+  overflow-y: auto;
+  max-height: calc(100vh - 426px);
+}
+
+.settingsButton {
+  display: flex;
+  gap: 12px;
+  margin: 20px 0px 20px 24px;
+}
+
+.settingsButtonContainer {
+  position: absolute;
+  bottom: 0;
+  width: 250px;
+  flex-direction: column;
+}
+
+.titlebar {
+  position: absolute;
+  top: 8px;
+  left: 6px;
+  height: 30px;
+  background: transparent;
+  user-select: none;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.titlebar-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin: 4px;
+}
+
+#titlebar-close {
+  background-color: rgba(255, 95, 87, 1);
+}
+
+#titlebar-minimize {
+  background-color: rgba(255, 188, 87, 1);
+}
+
+.flatButton {
+  background: 'transparent';
+  border: 'none !important';
+}
+
+.flatButton:active {
+  background: rgba(255, 255, 255, 0.1) !important;
+}
+
+.topStatusBar {
+  display: flex;
+  padding-top: 24px;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.rightWindow {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding-left: 20px;
+  padding-right: 32px;
+}
