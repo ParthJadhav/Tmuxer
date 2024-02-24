@@ -1,7 +1,4 @@
-use std::process::Command;
-
-use core_foundation::error;
-use log::Log;
+use std::{env, process::Command};
 
 #[derive(serde::Serialize, Clone)]
 pub struct Session {
@@ -28,10 +25,12 @@ impl Session {
 
 #[tauri::command]
 pub fn get_tmux_sessions() -> Vec<Session> {
+    let current_path = env::var("PATH").unwrap_or_default();
+    let new_path = "/opt/local/bin:/opt/homebrew/bin";
+
     let output = Command::new("tmux")
         .arg("ls")
-        .env("PATH", "/opt/local/bin")
-        .env("PATH", "/opt/homebrew/bin")
+        .env("PATH", format!("{}:{}", current_path, new_path))
         .output();
 
     match output {
