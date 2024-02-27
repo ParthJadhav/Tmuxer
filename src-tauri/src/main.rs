@@ -5,7 +5,6 @@ mod terminal;
 mod tmux;
 mod util;
 
-use log::LevelFilter;
 use tauri::{
     CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem,
     Window,
@@ -40,6 +39,8 @@ fn apply_vibrancy_to_dashboard(window: Window) {
 }
 
 fn main() {
+    let _ = fix_path_env::fix();
+
     #[cfg(debug_assertions)]
     const LOG_TARGETS: [LogTarget; 2] = [LogTarget::Stdout, LogTarget::Webview];
 
@@ -50,7 +51,6 @@ fn main() {
         .plugin(tauri_plugin_store::Builder::default().build())
         .plugin(
             tauri_plugin_log::Builder::default()
-                .level(LevelFilter::Warn)
                 .targets(LOG_TARGETS)
                 .build(),
         )
