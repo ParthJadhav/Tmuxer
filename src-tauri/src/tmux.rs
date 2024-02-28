@@ -39,7 +39,7 @@ pub fn get_tmux_sessions() -> Vec<Session> {
                     let session_name = parts[0];
                     let info: Vec<&str> = parts[1].split(" (created ").collect();
                     let window_info: Vec<&str> = info[0].split(' ').collect();
-                    let windows = window_info[0].parse::<i16>().unwrap();
+                    let windows = window_info[0].parse::<i16>().unwrap_or(0);
                     let created_at = info[1].trim_end_matches(')');
 
                     let session =

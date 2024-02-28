@@ -5,6 +5,7 @@ mod terminal;
 mod tmux;
 mod util;
 
+use log::Log;
 use tauri::{
     CustomMenuItem, Manager, SystemTray, SystemTrayEvent, SystemTrayMenu, SystemTrayMenuItem,
     Window,
@@ -65,10 +66,13 @@ fn main() {
         ])
         .setup(|app| {
             app.set_activation_policy(tauri::ActivationPolicy::Accessory);
-            let window = app.get_window("search").unwrap();
             #[cfg(target_os = "macos")]
-            apply_vibrancy(&window, NSVisualEffectMaterial::HudWindow, None, Some(10.0))
-                .expect("Unsupported platform! 'apply_vibrancy' is only supported on macOS");
+            if let Some(window) = app.get_window("search") {
+                apply_vibrancy(&window, NSVisualEffectMaterial::HudWindow, None, Some(10.0))
+                    .expect("Unsupported platform! 'apply_vibrancy' is only supported on macOS");
+            } else {
+                log::error!("Failed to apply vibrancy to window");
+            }
             Ok(())
         })
         .manage(ns_panel::State::default())
@@ -76,20 +80,44 @@ fn main() {
         .on_system_tray_event(|app, event| match event {
             SystemTrayEvent::MenuItemClick { id, .. } => match id.as_str() {
                 "Hide" => {
-                    let window = app.get_window("search").unwrap();
-                    window.hide().unwrap();
+                    if let Some(window) = app.get_window("search") {
+                        match window.hide() {
+                            Err(e) => {
+                                log::error!("Failed to hide search window: {}", e);
+                            }
+                            _ => {}
+                        }
+                    } else {
+                        log::error!("Failed to set auto_launch");
+                    }
                 }
                 "Show" => {
-                    let window = app.get_window("search").unwrap();
-                    window.emit("showApp", Some("Yes")).unwrap();
-                    window.show().unwrap();
-                    window.center().unwrap();
+                    if let Some(window) = app.get_window("search") {
+                        if let Err(e) = window.emit("showApp", Some("Yes")) {
+                            log::error!("Failed to emit 'showApp': {}", e);
+                        }
+                        if let Err(e) = window.show() {
+                            log::error!("Failed to show window: {}", e);
+                        }
+                        if let Err(e) = window.center() {
+                            log::error!("Failed to center window: {}", e);
+                        }
+                    } else {
+                        log::error!("Failed to set auto_launch");
+                    }
                 }
                 "Dashboard" => {
-                    let window = app.get_window("search").unwrap();
-                    window.emit("showDashboard", Some("Yes")).unwrap();
-                    window.show().unwrap();
-                    window.center().unwrap();
+                    if let Some(window) = app.get_window("search") {
+                        if let Err(e) = window.emit("showDashboard", Some("Yes")) {
+                            log::error!("Failed to emit 'showDashboard': {}", e);
+                        }
+                        if let Err(e) = window.show() {
+                            log::error!("Failed to show window: {}", e);
+                        }
+                        if let Err(e) = window.center() {
+                            log::error!("Failed to center window: {}", e);
+                        }
+                    }
                 }
                 "Quit" => {
                     std::process::exit(0);
