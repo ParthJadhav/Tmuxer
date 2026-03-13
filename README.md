@@ -1,3 +1,5 @@
+[\![Bloom - Your coffee, perfected.](https://github.com/user-attachments/assets/31139b9d-1b89-44e8-b563-5bb7ba150b7b)](https://bloom.parthjadhav.com)
+
 # Tmuxer
 
 ![Tmuxer Banner](./docs/banner.png)
